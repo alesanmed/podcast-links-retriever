@@ -16,4 +16,9 @@ def init(dispatcher: Dispatcher):
 
 def start(update: Update, _: CallbackContext):
     """Process a /start command."""
-    update.message.reply_text(text="I'm a bot, please talk to me!")
+    update.message.reply_text(
+        text=(
+            "Hola! Soy un bot para pedir todos los links de un nuevo episodio. "
+            "Empieza añadiendo una plataforma escribiendo /help"
+        )
+    )
