@@ -4,10 +4,13 @@ import signal
 import sys
 from importlib import import_module
 
+from dotenv import load_dotenv
 from telegram.ext import Dispatcher, Updater
 
 import configurations.settings as settings
 import utils.logger as logger
+
+load_dotenv()
 
 
 def load_handlers(dispatcher: Dispatcher):
