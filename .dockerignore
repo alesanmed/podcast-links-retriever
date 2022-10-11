@@ -1,0 +1,13 @@
+.venv
+.git
+.vscode
+.editorconfig
+.env*
+.gitignore
+.pylintrc
+docker-compose.yml
+Dockerfile
+makefile
+poetry.lock
+pyproject.toml
+README.md

@@ -6,7 +6,7 @@ authors = ["Ale Sanchez Medina <hi@alesanchez.es>"]
 license = "The Unlicense"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.10.8"
 python-telegram-bot = "^13.11"
 python-dotenv = "^0.21.0"
 spotipy = "^2.20.0"
