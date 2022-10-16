@@ -6,7 +6,7 @@ load_dotenv()
 
 TOKEN = os.getenv("BOT_TOKEN") or ""
 NAME = os.getenv("BOT_NAME")
-WEBHOOK = True
+WEBHOOK = False
 # The following configuration is only needed if you set WEBHOOK to True #
 WEBHOOK_OPTIONS = {
     "listen": os.getenv("BOT_IP"),  # IP

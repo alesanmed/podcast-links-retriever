@@ -1,6 +1,6 @@
 import os
 from dataclasses import dataclass
-from typing import Mapping, Optional
+from typing import Any, Dict, Mapping, Optional
 
 from bson import ObjectId
 from dotenv import load_dotenv
@@ -32,7 +32,12 @@ def add_user(user_id: int):
 
 
 def get_podcast(user_id: int) -> Optional[Podcast]:
-    podcast = database.podcast.find_one({"user_id": user_id})
+    user = get_user(user_id)
+
+    if user is None:
+        return
+
+    podcast = database.podcast.find_one({"user_id": user["_id"]})
 
     if podcast is None:
         return
@@ -40,14 +45,19 @@ def get_podcast(user_id: int) -> Optional[Podcast]:
     return Podcast(**podcast)
 
 
-def add_platform(user_id: int, platform: str, url: str):
+def add_platform(user_id: int, platform: str, url: str, extra_args: Dict[str, Any]):
+    if extra_args is None:
+        extra_args = {}
+
     user = get_user(user_id)
 
     if user is None:
         return
 
     database.podcast.update_one(
-        {"user_id": user["_id"]}, {"$set": {f"platform.{platform}": url}}, upsert=True
+        {"user_id": user["_id"]},
+        {"$set": {f"platform.{platform}": {"url": url, **extra_args}}},
+        upsert=True,
     )
 
 

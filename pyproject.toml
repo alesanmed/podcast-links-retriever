@@ -6,11 +6,12 @@ authors = ["Ale Sanchez Medina <hi@alesanchez.es>"]
 license = "The Unlicense"
 
 [tool.poetry.dependencies]
-python = "^3.10.8"
+python = "^3.10.7"
 python-telegram-bot = "^13.11"
 python-dotenv = "^0.21.0"
 spotipy = "^2.20.0"
 pymongo = "^4.2.0"
+pycountry = "^22.3.5"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.12.2"

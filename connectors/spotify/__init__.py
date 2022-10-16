@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Mapping
 
 import spotipy
 from dotenv import load_dotenv
@@ -27,10 +28,10 @@ def __auth() -> spotipy.Spotify:
     return spotipy.Spotify(auth_manager=auth_manager)
 
 
-def get_show_details(show_id: str):
+def get_show_details(show_id: str, country: str):
     sp = __auth()
 
-    show = sp.show(show_id=show_id)
+    show = sp.show(show_id=show_id, market=country)
 
     if show is None:
         raise ShowNotFoundError(show_id)
@@ -41,14 +42,17 @@ def get_show_details(show_id: str):
     return SpotifyShow(show_name, show_desc)
 
 
-def get_show_latest_episode(show_id: str):
+def get_last_episode_link(spotify_data: Mapping[str, str]) -> str:
     sp = __auth()
+    show_id = spotify_data["url"]
 
-    episodes = sp.show_episodes(show_id=show_id, limit=1)
+    episodes = sp.show_episodes(
+        show_id=show_id, market=spotify_data["country"], limit=1
+    )
 
     if episodes is None:
         raise ShowNotFoundError(show_id)
 
-    episode = episodes.items[0]
+    episode = episodes["items"][0]
 
-    return SpotifyShowEpisode(episode["name"], episode["external_urls"]["spotify"])
+    return episode["external_urls"]["spotify"]

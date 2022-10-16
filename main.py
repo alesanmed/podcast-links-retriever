@@ -19,6 +19,9 @@ def load_handlers(dispatcher: Dispatcher):
     files = os.listdir(base_path)
 
     for file_name in files:
+        if file_name.startswith("__"):
+            continue
+
         handler_module, _ = os.path.splitext(file_name)
 
         module = import_module(f".{handler_module}", "bot")
