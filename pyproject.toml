@@ -12,6 +12,7 @@ python-dotenv = "^0.21.0"
 spotipy = "^2.20.0"
 pymongo = "^4.2.0"
 pycountry = "^22.3.5"
+requests = "^2.28.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.12.2"

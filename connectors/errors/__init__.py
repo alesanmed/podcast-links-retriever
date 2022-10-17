@@ -1,4 +1,4 @@
-class ShowNotFoundError(Exception):
+class PodcastNotFoundError(Exception):
     def __init__(self, show_id: str):
         self.show_id = show_id
         self.message = "Show not found"

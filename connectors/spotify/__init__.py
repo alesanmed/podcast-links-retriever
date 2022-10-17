@@ -5,17 +5,12 @@ import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyClientCredentials
 
-from connectors.spotify.errors.ShowNotFound import ShowNotFoundError
+from connectors.errors import PodcastNotFoundError
+from connectors.types import Podcast
 
 load_dotenv()
 
 auth_manager = SpotifyClientCredentials()
-
-
-@dataclass
-class SpotifyShow:
-    name: str
-    description: str
 
 
 @dataclass
@@ -28,18 +23,18 @@ def __auth() -> spotipy.Spotify:
     return spotipy.Spotify(auth_manager=auth_manager)
 
 
-def get_show_details(show_id: str, country: str):
+def get_show_details(show_id: str, country: str) -> Podcast:
     sp = __auth()
 
     show = sp.show(show_id=show_id, market=country)
 
     if show is None:
-        raise ShowNotFoundError(show_id)
+        raise PodcastNotFoundError(show_id)
 
     show_name = show["name"]
     show_desc = show["description"]
 
-    return SpotifyShow(show_name, show_desc)
+    return Podcast(show_name, show_desc)
 
 
 def get_last_episode_link(spotify_data: Mapping[str, str]) -> str:
@@ -51,7 +46,7 @@ def get_last_episode_link(spotify_data: Mapping[str, str]) -> str:
     )
 
     if episodes is None:
-        raise ShowNotFoundError(show_id)
+        raise PodcastNotFoundError(show_id)
 
     episode = episodes["items"][0]
 
