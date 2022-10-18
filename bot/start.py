@@ -12,7 +12,7 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
-    """Provide handlers initialization."""
+    """Inicia la conversación con el bot e.g. /start"""
     dispatcher.add_handler(CommandHandler("start", start))
 
 

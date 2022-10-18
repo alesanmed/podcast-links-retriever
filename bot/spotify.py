@@ -11,6 +11,7 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
+    """Añade un podcast desde spotify /spotify url CODIGO_PAIS. Ejemplo https://open.spotify.com/show/6PJvg8SvlyGwHK86CuTdFu?si=7deb6832925d4460 ES"""
     dispatcher.add_handler(CommandHandler("spotify", spotify))
 
 

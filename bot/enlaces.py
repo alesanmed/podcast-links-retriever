@@ -1,4 +1,3 @@
-import os
 from importlib import import_module
 from logging import getLogger
 
@@ -11,6 +10,7 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
+    """Busca los enlaces del último capítulo en cada plataforma añadida"""
     dispatcher.add_handler(CommandHandler("enlaces", get_links))
 
 
@@ -35,4 +35,4 @@ def get_links(update: Update, _: CallbackContext):
                 f"{module.get_last_episode_link(user_podcast.platform[platform])}\n"
             )
 
-    return update.message.reply_text(reply_message)
+    return update.message.reply_text(reply_message, disable_web_page_preview=True)

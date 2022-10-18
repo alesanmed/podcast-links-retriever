@@ -10,6 +10,7 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
+    """Añade un podcast desde ivoox /ivoox url. Ejemplo /ivoox https://www.ivoox.com/podcast-aleware-en-espanol_sq_f1911186_1.html"""
     dispatcher.add_handler(CommandHandler("ivoox", ivoox))
 
 

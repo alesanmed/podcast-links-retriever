@@ -11,6 +11,7 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
+    """Añade un podcast desde apple podcasts /apple codigo CODIGO_PAIS. Ejemplo /apple 1538299550 ES"""
     dispatcher.add_handler(CommandHandler("apple", apple))
 
 

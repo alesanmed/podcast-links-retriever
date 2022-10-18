@@ -10,6 +10,8 @@ logger = getLogger(__name__)
 
 
 def init(dispatcher: Dispatcher):
+    """Añade un podcast desde google podcasts /google url. Ejemplo /google https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuaXZvb3guY29tL2FsZXdhcmUtZW4tZXNwYW5vbF9mZ19mMTkxMTE4Nl9maWx0cm9fMS54bWw"""
+
     dispatcher.add_handler(CommandHandler("google", google))
 
 
