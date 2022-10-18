@@ -6,7 +6,7 @@ from connectors.errors import PodcastNotFoundError
 from connectors.types import Podcast
 
 
-def get_show_details(show_id: str, country: str):
+def get_show_details(show_id: str, country: str) -> Podcast:
     url = f"https://itunes.apple.com/lookup?id={show_id}&country={country}&media=podcast&limit=1"
 
     response = requests.get(url, timeout=3)
