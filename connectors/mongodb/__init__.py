@@ -45,7 +45,9 @@ def get_podcast(user_id: int) -> Optional[Podcast]:
     return Podcast(**podcast)
 
 
-def add_platform(user_id: int, platform: str, url: str, extra_args: Dict[str, Any]):
+def add_platform(
+    user_id: int, platform: str, url: str, extra_args: Optional[Dict[str, Any]] = None
+):
     if extra_args is None:
         extra_args = {}
 
